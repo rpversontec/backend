@@ -1,9 +1,13 @@
 const express = require("express");
+const cors = require('cors');
+
 const app = express();
 
 
 //use middleware
 app.use(express.json());
+app.use(cors());
+
 
 const requestLogger = (request, response, next) => {
   console.log("Method:", request.method);
@@ -15,11 +19,11 @@ const requestLogger = (request, response, next) => {
 
 app.use(requestLogger);
 
-const unknownEndpoint = (request, response) => {
+/*const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
 };
 
-app.use(unknownEndpoint);
+app.use(unknownEndpoint); */
 
 let notes = [
   {
